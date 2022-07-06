@@ -1,4 +1,9 @@
 import 'package:coffeeshop/constants/color_palette.dart';
+import 'package:coffeeshop/screens/McCafe.dart';
+import 'package:coffeeshop/screens/black_gold.dart';
+import 'package:coffeeshop/screens/cold_brew.dart';
+import 'package:coffeeshop/screens/gold_brew.dart';
+import 'package:coffeeshop/screens/nescafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons_null_safety/flutter_icons_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,10 +18,101 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final colorPalette = ColorPalette();
 
+  var _selectedOption = 0;
+
+  List allOptions = [
+    BlackGold(),
+    ColdBrew(),
+    Nescafe(),
+    McCafe(),
+    GoldBrew(),
+  ];
+
+  List isSelected = [
+    true,
+    false,
+    false,
+    false,
+    false,
+  ];
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
+
+    isOptionSelected(index) {
+      var previousIndex = isSelected.indexOf(true);
+      isSelected[index] = true;
+      isSelected[previousIndex] = false;
+    }
+
+    Widget buildOption(String title, int index) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          isSelected[index]
+              ? Container(
+                  height: 8.0,
+                  width: 8.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF23163D),
+                  ),
+                )
+              : Container(
+                  height: 8.0,
+                  width: 8.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                  ),
+                ),
+          SizedBox(
+            height: 5.0,
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedOption = index;
+                isOptionSelected(index);
+              });
+            },
+            child: Text(
+              title,
+              style: isSelected[index]
+                  ? GoogleFonts.bigShouldersText(
+                      color: Color(0xFF23163D), fontSize: 18.0)
+                  : GoogleFonts.bigShouldersText(
+                      color: Color(0xFFA59Fb0), fontSize: 17.0),
+            ),
+          )
+        ],
+      );
+    }
+
+    Widget buildSideNavigator() {
+      return Positioned(
+        top: 75.0,
+        child: RotatedBox(
+          quarterTurns: 3,
+          child: Container(
+            width: MediaQuery.of(context).size.height - 100.0,
+            height: MediaQuery.of(context).size.width / 5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildOption('BlackGold', 0),
+                buildOption('Cold Brew', 1),
+                buildOption('NesCafe', 2),
+                buildOption('McCafe', 3),
+                buildOption('Gold Brew', 4),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       body: Stack(
@@ -102,7 +198,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ],
             ),
-          )
+          ),
+          buildSideNavigator(),
         ],
       ),
     );
