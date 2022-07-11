@@ -32,8 +32,7 @@ class _ColdBrewState extends State<ColdBrew> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
               image: DecorationImage(
-                image: AssetImage(
-                    '/Users/danymacos/Developer/flutterapp/coffeeshop/assets/doodle.png'),
+                image: AssetImage('assets/doodle.png'),
                 fit: BoxFit.none,
               ),
             ),
@@ -174,14 +173,8 @@ class _ColdBrewState extends State<ColdBrew> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        buildListItem(
-            '/Users/danymacos/Developer/flutterapp/coffeeshop/assets/coffee4.png',
-            '150',
-            ColorPalette().secondSlice),
-        buildListItem(
-            '/Users/danymacos/Developer/flutterapp/coffeeshop/assets/coffee2.png',
-            '200',
-            ColorPalette().firstSlice),
+        buildListItem('assets/coffee4.png', '150', ColorPalette().secondSlice),
+        buildListItem('assets/coffee2.png', '200', ColorPalette().firstSlice),
       ],
     );
   }
