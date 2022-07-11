@@ -200,6 +200,15 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
           buildSideNavigator(),
+          Positioned(
+            top: (screenHeight / 3) + 5.0,
+            left: (screenWidth / 5) + 25.0,
+            child: Container(
+              height: screenHeight - ((screenHeight / 3) + 50.0),
+              width: screenWidth - ((screenWidth / 5) + 40.0),
+              child: allOptions[_selectedOption],
+            ),
+          ),
         ],
       ),
     );
