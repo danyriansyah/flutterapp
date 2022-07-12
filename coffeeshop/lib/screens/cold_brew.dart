@@ -1,4 +1,5 @@
 import 'package:coffeeshop/constants/color_palette.dart';
+import 'package:coffeeshop/screens/details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
@@ -14,7 +15,11 @@ class _ColdBrewState extends State<ColdBrew> {
   @override
   Widget buildListItem(String imgPath, String price, Color bgColor) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (contex) =>
+                CoffeeDetails(imgPath: imgPath, headerColor: bgColor)));
+      },
       child: Stack(children: [
         Container(
           height: 300.0,
