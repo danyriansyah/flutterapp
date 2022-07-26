@@ -1,5 +1,5 @@
-import 'package:coffeeshop/screens/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:surfinstructors/list_instructor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,12 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DashboardPage(),
+      home: ListInstructorPage(),
     );
   }
 }
